@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.model.User;
 
 /**
- * Servlet implementation class MainPage
+ * Servlet implementation class MainPage create by xiason chen
  */
 @WebServlet("/")
 public class MainPage extends HttpServlet {
