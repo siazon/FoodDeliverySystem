@@ -1,4 +1,4 @@
-package com.view;
+package com.controler;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,10 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dal.UserDAL;
 import com.model.User;
 
 /**
- * Servlet implementation class MainPage create by xiason chen
+ * Servlet implementation class MainPage
  */
 @WebServlet("/")
 public class MainPage extends HttpServlet {
@@ -22,8 +23,10 @@ public class MainPage extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
+	private UserDAL userDAL;
     public MainPage() {
         super();
+        userDAL=new UserDAL();
         //jiating test
         // TODO Auto-generated constructor stub
     }
@@ -66,9 +69,13 @@ public class MainPage extends HttpServlet {
 		}
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
+//	public static void main(String[] args) {
+//		List<User> listUser =new UserDAL().selectAllUsers();
+//		int aa=0;
+//	}
 	private void listUser(HttpServletRequest request, HttpServletResponse response)
 			throws Exception, IOException, ServletException {
-		List<User> listUser =null;// userDAO.selectAllUsers();
+		List<User> listUser =userDAL.selectAllUsers();
 		request.setAttribute("listUser", listUser);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.jsp");
 		dispatcher.forward(request, response);

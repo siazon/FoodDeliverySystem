@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<img src="loge.png" width="150" height="150">
 </body>
 </html>
