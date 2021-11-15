@@ -21,12 +21,14 @@ body {
 	color: #2f2f2f;
 }
 
-.divd {
+div {
 	border: 1px solid #e0e0e0;
 	border-radius: 10px;
 	display: inline-block;
 	width: 400px;
 	margin: 50px;
+	
+	padding:30px 0;
 }
 
 input {
@@ -70,7 +72,8 @@ input {
 			<label style="color: #808080" for="lname">Password:</label><br> 
 			<input type="password" id="pwd" name="pwd" value="" ></input><br> <br> 
 			<input type="submit" value="Login" class="button-success pure-button" style="margin: 20px 0 20px 0"></input>
-			<br> <a style="margin:20px" href="<%= request.getContextPath() %>/User/UserRegistration.jsp">Create a account</a>
+			<br> 
+			<a style="margin:20px" href="<%= request.getContextPath() %>/User/UserRegistration.jsp">Create a account</a>
 		</form>
 	</div>
 </body>

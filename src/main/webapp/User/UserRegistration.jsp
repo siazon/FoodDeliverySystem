@@ -26,6 +26,7 @@ div {
 	display: inline-block;
 	width: 400px;
 	margin: 50px;
+	padding:30px 0;
 }
 
 input {

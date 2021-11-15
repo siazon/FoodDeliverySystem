@@ -6,6 +6,34 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style>
+table, td, th {
+  border: 1px solid black;
+}
+
+table {
+  width: auto;
+  border-collapse: collapse;
+}
+.pure-button {
+	font-family: inherit;
+	font-size: 100%;
+	padding: .5em 1em;
+	color: #444;
+	color: rgba(0, 0, 0, .8);
+	border: 1px solid #999;
+	border: none transparent;
+	background-color: #e6e6e6;
+	text-decoration: none;
+	border-radius: 2px;
+	margin: 20px;
+	cursor:pointer;
+}
+
+.button-success {
+	background: rgb(28, 184, 65); /* this is a green */
+}
+</style>
 </head>
 <body>
 
@@ -75,13 +103,15 @@
                 	/>
                 </td>
             </tr>
-            <tr>
-            	<td colspan="2" align="center">
-            		<input type="submit" value="Save" />
-            	</td>
-            </tr>
+            
         </table>
+            		<input type="submit" value="Save" class="button-success pure-button"/>
+            		<input onclick="cancelEdit()" type="button" value="Cancel" class="button-success pure-button" />
         </form>
     </div>
-</body>
+</body><script>
+    function cancelEdit(){
+    	//alert("displayLogin is click");
+    	history.back(-1) }
+</script>
 </html>

@@ -49,7 +49,7 @@ footer {
 </head>
 <body>
 	<header id="tabTit">
-		<img src="Images/logo.png" width="160" height="80"> 
+		<img src="Images/logo.png" onclick="displayHome()" width="160" height="80"> 
 		<a onclick="displayLogin()" style="cursor:pointer;">Login</a>
 		 <a  onclick="displayHome()" style="cursor:pointer;">Home</a>
 	</header>

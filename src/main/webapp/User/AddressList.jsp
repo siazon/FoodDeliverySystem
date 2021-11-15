@@ -9,6 +9,16 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style>
+table, td, th {
+  border: 1px solid black;
+}
+
+table {
+  width: auto;
+  border-collapse: collapse;
+}
+</style>
 </head>
 <body>
 	<center>
@@ -40,6 +50,7 @@
 				<th>Street</th>
 				<th>Address</th>
 				<th>Phone</th>
+				<th>Operate</th>
 			</tr>
 			<c:forEach var="address" items="${listAddress}">
 				<tr>
