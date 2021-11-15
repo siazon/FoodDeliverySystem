@@ -1,74 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="ISO-8859-1"%>
+<%@include file="../common/init.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+header {
+	height: 80px;
+	border-style: solid;
+	border-width: 0px 0px 1px 0px;
+	border-color: #FB6100;
+}
+
+header a {
+	width: 100px;
+	background-color: white;
+	float: right;
+	margin-top: 30px;
+}
+
+section {
+	flex: 1;
+	height: auto;
+}
+
+footer {
+	height: 50px;
+	/*background-color: #FB6100;*/
+}
+</style>
 </head>
 <body>
-<center>
-		<h1>User Management</h1>
-        <h2>
-        	<a href="new">Add New User</a>
-        	&nbsp;&nbsp;&nbsp;
-        	<a href="list">List All Users</a>
-       abs 	
-        </h2>
-	</center>
-    <div align="center">
-		<c:if test="${user != null}">
-			<form action="update" method="post">
-        </c:if>
-        <c:if test="${user == null}">
-			<form action="insert" method="post">
-        </c:if>
-        <table border="1" cellpadding="5">
-            <caption>
-            	<h2>
-            		<c:if test="${user != null}">
-            			Edit User
-            		</c:if>
-            		<c:if test="${user == null}">
-            			Add New User
-            		</c:if>
-            	</h2>
-            </caption>
-        		<c:if test="${user != null}">
-        			<input type="hidden" name="id" value="<c:out value='${user.id}' />" />
-        		</c:if>            
-            <tr>
-                <th>User Name: </th>
-                <td>
-                	<input type="text" name="name" size="45"
-                			value="<c:out value='${user.name}' />"
-                		/>
-                </td>
-            </tr>
-            <tr>
-                <th>User Email: </th>
-                <td>
-                	<input type="text" name="email" size="45"
-                			value="<c:out value='${user.email}' />"
-                	/>
-                </td>
-            </tr>
-            <tr>
-                <th>Country: </th>
-                <td>
-                	<input type="text" name="country" size="15"
-                			value="<c:out value='${user.country}' />"
-                	/>
-                </td>
-            </tr>
-            <tr>
-            	<td colspan="2" align="center">
-            		<input type="submit" value="Save" />
-            	</td>
-            </tr>
-        </table>
-        </form>
-    </div>	
+	<header id="tabTit">
+		<img src="Images/logo.png" width="160" height="80"> 
+		<a onclick="displayLogin()" style="cursor:pointer;">Login</a>
+		 <a  onclick="displayHome()" style="cursor:pointer;">Home</a>
+	</header>
+	<section>
+	  <iframe id="centerFrame" name="centerFrame" class="page-iframe" width="100%" height="100%" src="Home.jsp"
+            frameborder="0"></iframe>
+	</section>
+	<footer><%@ include file="Footer.jsp"%></footer>
 </body>
+<script>
+    var btns = document.getElementById('tabTit').getElementsByTagName('a');
+    var tabCon = document.getElementById('centerFrame');
+    function displayLogin(){
+    	 tabCon.src = 'User/Login.jsp';
+    }
+    function displayHome(){
+   	 tabCon.src = 'Home.jsp';
+   }
+</script>
 </html>

@@ -1,18 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-
 <style>
 .center {
 	
 }
 
 body {
-	background-image: url('back.png');
 	background-repeat: no-repeat;
 }
 
@@ -28,7 +25,7 @@ div {
 	border-radius: 10px;
 	display: inline-block;
 	width: 400px;
-	margin: 180px;
+	margin: 50px;
 }
 
 input {
@@ -64,22 +61,34 @@ input {
 </style>
 </head>
 <body>
-<div>
-		<img src="/src/main/webapp/Images/loge.png" width="150" height="150">
-		<form action="signedup.jsp"  style="margin: 5px">
-			<label style="color: #808080" for="fname">First Name:</label><br>
-			<input type="text" id="fname" name="fname" value="Xiasong"
-				clase="itext"></input><br> <label style="color: #808080"
-				for="lname">Last Name:</label><br> <input type="text"
-				id="lname" name="lname" value="Chen"></input><br> <label
-				style="color: #808080" for="lname">e-mail:</label><br> <input
-				type="email" id="email" name="email"
-				value="A00291322@student.ait.ie"></input><br> <label
-				style="color: #808080" for="lname">Password:</label><br> <input
-				type="password" id="pwd" name="pwd" value="123456"></input><br>
-			<br> <input type="submit" value="Submit"
-				class="button-success pure-button" style="margin: 20px 0 20px 0"></input>
+	<div>
+		<img src="<%=request.getContextPath()%>/Images/logo.png" width="280" height="125">
+		<form action="<%=request.getContextPath()%>/userRegist" method="post" onsubmit="return check()" style="margin: 5px">
+			<label style="color: #808080" for="lname">e-mail:</label><br> <input type="email" id="email" name="email" value=""></input><br> <label style="color: #808080"
+				for="lname"
+			>Password:</label><br> <input type="password" id="pwd" name="pwd" value=""></input><br> <br> <input type="submit" value="Sign Up"
+				class="button-success pure-button" style="margin: 20px 0 20px 0"
+			></input><br>
+				<label style="color: red" >
+			<%
+			if (request.getAttribute("errMsg") != null)
+				out.println(request.getAttribute("errMsg"));
+			%></label>
 		</form>
 	</div>
 </body>
+<script>
+	function check() {
+		var email = document.getElementById("email").value;
+		var pwd = document.getElementById("pwd").value;
+		if (email == null || email == "") {
+			alert("Email is null");
+			return false;
+		} else if (pwd == null || pwd == "") {
+			alert("pwd is null");
+			return false;
+		}
+		return true;
+	}
+</script>
 </html>

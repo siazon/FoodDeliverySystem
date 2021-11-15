@@ -5,8 +5,18 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style>
+.center {
+	
+}
+
+body {
+	
+}
+
+</style>
 </head>
 <body>
-<img src="loge.png" width="150" height="150">
+<img src="Images/logo.png" width="160" height="80">
 </body>
 </html>
