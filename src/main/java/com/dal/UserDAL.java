@@ -15,7 +15,7 @@ public class UserDAL {
 	private final String SELECT_ALL_EMPLOYEES = "select * from tb_user where user_role <> 'Customer'";
 	private final String SELECT_ALL_USERS = "select * from tb_user";
 	private final String DELETE_USERS_SQL = "delete from tb_user where user_email = ?;";
-	private static final String UPDATE_USERS_SQL = "update tb_user set name = ?, country =? where user_email = ?;";
+	private static final String UPDATE_USERS_SQL = "update tb_user set user_name = ?,user_phone = ?,user_status = ?, user_role =? where user_email = ?;";
 
 	public String insertUser(User user) throws SQLException {
 		System.out.println(INSERT_USERS_SQL);
@@ -122,23 +122,25 @@ public class UserDAL {
 		return users;
 	}
 
-	public boolean deleteUser(int id) throws SQLException {
+	public boolean deleteUser(String email) throws SQLException {
 		boolean rowDeleted;
 		try (Connection connection = MysqlUtil.getConnection();
 				PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
-			statement.setInt(1, id);
+			statement.setString(1, email);
 			rowDeleted = statement.executeUpdate() > 0;
 		}
 		return rowDeleted;
 	}
-
+//can not update password, create a separate method to change password
 	public boolean updateUser(User user) throws SQLException {
 		boolean rowUpdated;
 		try (Connection connection = MysqlUtil.getConnection();
 				PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
-			statement.setString(1, user.getUser_password());
-			statement.setString(2, user.getUser_role());
-			statement.setString(3, user.getUser_email());
+			statement.setString(1, user.getUser_name());
+			statement.setString(2, user.getUser_phone());
+			statement.setString(3, user.getUser_status());
+			statement.setString(4, user.getUser_role());
+			statement.setString(5, user.getUser_email());
 
 			rowUpdated = statement.executeUpdate() > 0;
 		}

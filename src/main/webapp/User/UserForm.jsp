@@ -41,10 +41,10 @@ table {
 	</center>
 	<div align="center">
 		<c:if test="${users != null}">
-			<form action="<%=request.getContextPath()%>/AddressManager?action=update" method="post">
+			<form action="<%=request.getContextPath()%>/EmployeeManager?action=update" method="post">
 		</c:if>
 		<c:if test="${users == null}">
-			<form action="<%=request.getContextPath()%>/AddressManager?action=new" method="post">
+			<form action="<%=request.getContextPath()%>/EmployeeManager?action=new" method="post">
 		</c:if>
 		<table border="1" cellpadding="5">
 			<caption>
@@ -52,7 +52,7 @@ table {
 					<c:if test="${users != null}">
             			Edit User
             		</c:if>
-					<c:if test="${address == null}">
+					<c:if test="${users == null}">
             			Add New User
             		</c:if>
 				</h2>
@@ -63,15 +63,15 @@ table {
 			</tr>
 			<tr>
 				<th>Name:</th>
-				<td><input type="text" name="county" size="45" value="<c:out value='${users.user_name}' />" /></td>
+				<td><input type="text" name="user_name" size="45" value="<c:out value='${users.user_name}' />" /></td>
 			</tr>
 			<tr>
 				<th>Phone:</th>
-				<td><input type="text" name="street" size="45" value="<c:out value='${users.user_phone}' />" /></td>
+				<td><input type="text" name="user_phone" size="45" value="<c:out value='${users.user_phone}' />" /></td>
 			</tr>
 			<tr>
 				<th>Status:</th>
-				<td><input type="text" name="address" size="45" list="statuslists"  value="<c:out value='${users.user_status}' />" />
+				<td><input type="text" name="user_status" size="45" list="statuslists"  value="<c:out value='${users.user_status}' />" />
 				 <datalist id="statuslists">
 						<option value="working">
 						<option value="on holiday">
@@ -82,7 +82,7 @@ table {
 			<tr>
 			<tr>
 				<th>role:</th>
-				<td><input type="text" name="phone" size="45" list="rolelists"  value="<c:out value='${users.user_role}' />" />
+				<td><input type="text" name="user_role" size="45" list="rolelists"  value="<c:out value='${users.user_role}' />" />
 				 <datalist id="rolelists">
 						<option value="Staff">
 						<option value="Driver">

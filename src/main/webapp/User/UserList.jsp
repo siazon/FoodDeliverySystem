@@ -25,9 +25,10 @@ table {
 	
 		<h1>Employee Management</h1>
 		<h2>
-			<a href="<%=request.getContextPath()%>/User/UserForm.jsp">Add New Employee</a> &nbsp;&nbsp;&nbsp; <a
-				href="<%=request.getContextPath()%>/AddressManager?action=list"
-			>List All Employee</a>
+		<!-- 	<a href="<%=request.getContextPath()%>/User/UserForm.jsp">Add New Employee</a>  
+			&nbsp;&nbsp;&nbsp; <a
+				href="<%=request.getContextPath()%>/EmployeeManager?action=list"
+			>List All Employee</a> -->
 		</h2>
 	</center>
 	<div align="center">
@@ -49,9 +50,9 @@ table {
 					<td><c:out value="${address.user_phone}" /></td>
 					<td><c:out value="${address.user_role}" /></td>
 					<td><a
-						href="<%= request.getContextPath() %>/AddressManager?action=edit&user_email=<c:out value='${address.user_email}' />"
+						href="<%= request.getContextPath() %>/EmployeeManager?action=edit&user_email=<c:out value='${address.user_email}' />"
 					>Edit</a> &nbsp;&nbsp;&nbsp;&nbsp; <a
-						href="<%= request.getContextPath() %>/AddressManager?action=delete&user_email=<c:out value='${address.user_email}' />"
+						href="<%= request.getContextPath() %>/EmployeeManager?action=delete&user_email=<c:out value='${address.user_email}' />"
 					>Delete</a></td>
 				</tr>
 			</c:forEach>
