@@ -39,6 +39,7 @@ public class AddressManager extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String action = request.getParameter("action");
+		//insert to database
 		if ("new".equals(action)) {
 			String email = request.getParameter("user_email");
 			String county = request.getParameter("county");
@@ -47,24 +48,30 @@ public class AddressManager extends HttpServlet {
 			String phone = request.getParameter("phone");
 			UserAddress newUser = new UserAddress(0, email, county, street, address, phone);
 			try {
-			addressDAL.insertAddress(newUser);
+				addressDAL.insertAddress(newUser);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			ListAllAddress(request, response, email);
-		} else if ("list".equals(action)) {
+		}
+		// list all the address
+		else if ("list".equals(action)) {
 			String email = request.getParameter("user_email");
 			ListAllAddress(request, response, email);
-		}  else if ("edit".equals(action)) {
+		}
+		// navigatt to the edit page
+		else if ("edit".equals(action)) {
 			String email = request.getParameter("user_email");
 			int address_id = Integer.parseInt(request.getParameter("address_id"));
-			UserAddress existingAddress= addressDAL.selectAddress(address_id);
+			UserAddress existingAddress = addressDAL.selectAddress(address_id);
 			request.setAttribute("user_email", email);
 			request.setAttribute("address", existingAddress);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("User/AddressForm.jsp");
 			dispatcher.forward(request, response);
-		} else if ("update".equals(action)) {
+		}
+		// update datas to database
+		else if ("update".equals(action)) {
 			int address_id = Integer.parseInt(request.getParameter("address_id"));
 			String email = request.getParameter("user_email");
 			String county = request.getParameter("county");
@@ -73,16 +80,17 @@ public class AddressManager extends HttpServlet {
 			String phone = request.getParameter("phone");
 			UserAddress newAddress = new UserAddress(address_id, email, county, street, address, phone);
 			try {
-			Boolean resultBoolean=	addressDAL.updateAddress(newAddress);
-			if(resultBoolean)
-			{
-				ListAllAddress(request, response, email);
-			}
+				Boolean resultBoolean = addressDAL.updateAddress(newAddress);
+				if (resultBoolean) {
+					ListAllAddress(request, response, email);
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if ("delete".equals(action)) {
+		}
+		//delete from database
+		else if ("delete".equals(action)) {
 			String email = request.getParameter("user_email");
 			int address_id = Integer.parseInt(request.getParameter("address_id"));
 			try {

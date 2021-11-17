@@ -66,7 +66,7 @@ footer {
     	 tabCon.src = 'User/Login.jsp';
     }
     function displayHome(){
-   	 tabCon.src = 'Home.jsp';
+   	 tabCon.src = '<%=request.getContextPath()%>/EmployeeManager';
    }
 </script>
 </html>

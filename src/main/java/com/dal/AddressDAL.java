@@ -95,7 +95,6 @@ public class AddressDAL {
 		}
 		return addresss;
 	}
-
 	public List<UserAddress> selectAllAddress() {
 
 		// using try-with-resources to avoid closing resources (boiler plate code)

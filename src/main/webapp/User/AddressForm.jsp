@@ -96,7 +96,7 @@ table {
             </tr>
             <tr>
             <tr>
-                <th>Address: </th>
+                <th>Phone: </th>
                 <td>
                 	<input type="text" name="phone" size="45"
                 			value="<c:out value='${address.phone}' />"

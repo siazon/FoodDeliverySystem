@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +10,6 @@
 }
 
 body {
-
 	background-repeat: no-repeat;
 }
 
@@ -63,17 +61,24 @@ input {
 </style>
 </head>
 <body>
-<img src="<%= request.getContextPath() %>/Images/ok.png"  width="100" height="100">
+	<img src="<%=request.getContextPath()%>/Images/ok.png" width="100" height="100">
 	<h1>You have signed up</h1>
 	<h1>successfully</h1>
-	
-<b style="color:#808080">Thank you for choosing us.</b><br>
-<b style="color:#808080">your username is </b>
-<b style="font-family: "Garamond", Georgia, Serif"><%= request.getParameter("usersname") %></b><br>
-<b style="color:#808080">email is </b>
-<b style="font-family: "Garamond", Georgia, Serif"><%= request.getParameter("email") %></b><br>
-	<input  type="button" class="button-success pure-button" style="margin:20px 0 20px 0;width:auto;color:white" value="OK"/>
-	</div><br>
-	<a href="<%= request.getContextPath() %>/AddressManager?user_email=<%= request.getParameter("email")%>">Add a Address Now</a>
+	<b style="color: #808080">Thank you for choosing us.</b>
+	<br>
+	<b style="color: #808080">your email is </b>
+	<b style="font-family:"Garamond", Georgia, Serif"><%=request.getParameter("email")%></b>
+	<br>
+	<input type="button" class="button-success pure-button" style="margin: 20px 0 20px 0; width: auto; color: white" value="OK" />
+	</div>
+	<br>
+	<%
+	//only customer show add address
+	if (request.getAttribute("role") != null && "Customer".equals(request.getAttribute("role"))) {
+	%>
+	<a href="<%=request.getContextPath()%>/AddressManager?user_email=<%=request.getParameter("email")%>">Add a Address Now</a>
+	<%
+	}
+	%>
 </body>
 </html>

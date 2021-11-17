@@ -11,7 +11,8 @@ public class UserDAL {
 	private final String INSERT_USERS_SQL = "INSERT INTO tb_user" + "  ( user_email,user_password,user_role) VALUES "
 			+ " (?, ?, ?);";
 
-	private final String SELECT_ADDRESS_BY_EMAIL = "select * from tb_user where user_email =?";
+	private final String SELECT_UER_BY_EMAIL = "select * from tb_user where user_email =?";
+	private final String SELECT_ALL_EMPLOYEES = "select * from tb_user where user_role <> 'Customer'";
 	private final String SELECT_ALL_USERS = "select * from tb_user";
 	private final String DELETE_USERS_SQL = "delete from tb_user where user_email = ?;";
 	private static final String UPDATE_USERS_SQL = "update tb_user set name = ?, country =? where user_email = ?;";
@@ -43,7 +44,7 @@ public class UserDAL {
 		// Step 1: Establishing a Connection
 		try (Connection connection = MysqlUtil.getConnection();
 				// Step 2:Create a statement using connection object
-				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ADDRESS_BY_EMAIL);) {
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_UER_BY_EMAIL);) {
 			preparedStatement.setString(1, eamil);
 			System.out.println(preparedStatement);
 			// Step 3: Execute the query or update query
@@ -53,8 +54,11 @@ public class UserDAL {
 			while (rs.next()) {
 				String email = rs.getString("user_email");
 				String pwd = rs.getString("user_password");
+				String name = rs.getString("user_name");
+				String phone = rs.getString("user_phone");
+				String status = rs.getString("user_status");
 				String role = rs.getString("user_role");
-				user = new User(email, pwd, role);
+				user = new User( email,pwd, name,phone,status,role);
 			}
 		} catch (SQLException e) {
 			printSQLException(e);
@@ -82,6 +86,35 @@ public class UserDAL {
 				String email = rs.getString("email");
 				String country = rs.getString("country");
 				// users.add(new User(id, name, email, country));
+			}
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		return users;
+	}
+	
+	public List<User> selectAllEmployee() {
+
+		// using try-with-resources to avoid closing resources (boiler plate code)
+		List<User> users = new ArrayList<>();
+		// Step 1: Establishing a Connection
+		try (Connection connection = MysqlUtil.getConnection();
+
+				// Step 2:Create a statement using connection object
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_EMPLOYEES);) {
+			System.out.println(preparedStatement);
+			// Step 3: Execute the query or update query
+			ResultSet rs = preparedStatement.executeQuery();
+
+			// Step 4: Process the ResultSet object.
+			while (rs.next()) {
+				String email = rs.getString("user_email");
+				String user_password = rs.getString("user_password");
+				String name = rs.getString("user_name");
+				String phone = rs.getString("user_phone");
+				String status = rs.getString("user_status");
+				String role = rs.getString("user_role");
+				 users.add(new User( email,user_password, name,phone,status,role));
 			}
 		} catch (SQLException e) {
 			printSQLException(e);

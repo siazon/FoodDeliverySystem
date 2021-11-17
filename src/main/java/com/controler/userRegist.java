@@ -50,11 +50,15 @@ public class userRegist extends HttpServlet {
 		String name = request.getParameter("usersname");
 		String email = request.getParameter("email");
 		String pwd = request.getParameter("pwd");
+		String phone = request.getParameter("phone");
+		String status = request.getParameter("status");
 
 		String role = email.contains("@ait.ie") ? "Staff" : "Customer";
-		User newUser = new User(email, pwd, role);
+		User newUser = new User( email,pwd, name,phone,status,role);
 		try {
 			String msg = userDAO.insertUser(newUser);
+
+			request.setAttribute("role", role);
 			if("succeed".equals(msg))
 			{
 				RequestDispatcher dispatcher = request.getRequestDispatcher("User/RegistrationSucceed.jsp");

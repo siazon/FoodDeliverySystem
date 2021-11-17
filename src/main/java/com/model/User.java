@@ -3,6 +3,33 @@ package com.model;
 public class User {
 	protected String user_password;
 	protected String user_email;
+	protected String user_name;
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+	public String getUser_phone() {
+		return user_phone;
+	}
+
+	public void setUser_phone(String user_phone) {
+		this.user_phone = user_phone;
+	}
+
+	public String getUser_status() {
+		return user_status;
+	}
+
+	public void setUser_status(String user_status) {
+		this.user_status = user_status;
+	}
+
+	protected String user_phone;
+	protected String user_status;
 	protected String user_role;
 	
 
@@ -33,11 +60,14 @@ public class User {
 	public User() {
 	}
 	
-	public User( String email,String password, String role) {
+	public User( String email,String password,String name,String phone,String status, String role) {
 		super();
 		this.user_password = password;
 		this.user_email = email;
 		this.user_role = role;
+		this.user_name=name;
+		this.user_phone=phone;
+		this.user_status=status;
 	}
 
 	
