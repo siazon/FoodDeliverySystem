@@ -47,6 +47,19 @@ public class userRegist extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String action= request.getParameter("action");
+		if("login".equals(action))
+		{
+			String email = request.getParameter("email");
+			String pwd = request.getParameter("pwd");
+			if (email.contains("admin")&&"123456".equals(pwd)) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+				dispatcher.forward(request, response);
+			}
+		}
+		else {
+			
+		
 		String name = request.getParameter("usersname");
 		String email = request.getParameter("email");
 		String pwd = request.getParameter("pwd");
@@ -73,7 +86,7 @@ public class userRegist extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		}
 	
 		doGet(request, response);
 	}

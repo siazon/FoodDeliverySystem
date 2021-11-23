@@ -5,75 +5,45 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 <style>
-.center {
-	
-}
 
-body {
-	background-repeat: no-repeat;
-}
 
-* {
-	font-family: "Helvetica", Georgia, Serif;
-	text-align: center;
-	background-color: white;
-	color: #2f2f2f;
-}
 
-div {
-	border: 1px solid #e0e0e0;
-	border-radius: 10px;
-	display: inline-block;
-	width: 400px;
-	margin: 50px;
-	
-	padding:30px 0;
-}
 
-input {
-	margin: 5px;
-	width: 200px;
-}
 
-.ititle {
-	style ="color: red";
-}
 
-.pure-button {
-	font-family: inherit;
-	font-size: 100%;
-	padding: .5em 1em;
-	color: #444;
-	color: rgba(0, 0, 0, .8);
-	border: 1px solid #999;
-	border: none transparent;
-	background-color: #e6e6e6;
-	text-decoration: none;
-	border-radius: 2px;
-}
 
-.button-success {
-	background: rgb(28, 184, 65); /* this is a green */
-}
-
-.itext {
-	outline-style: none;
-	border: 1px solid, red;
-}
 </style>
 </head>
 <body>
 <div>
-		<img src="../Images/logo.png" width="280" height="125">
-		<form action="<%= request.getContextPath() %>/userRegist" method="post" style="margin: 5px">
+		<form class="box" action="<%= request.getContextPath() %>/userRegist?action=login" method="post" style="width:300px; margin: 100px auto">
+			
+		<img src="../Images/logo.png" width="280" height="125"> <div class="field">
+    <label class="label">Email</label>
+    <div class="control">
+      <input class="input" name="email" type="email" placeholder="e.g. alex@example.com">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Password</label>
+    <div class="control">
+      <input class="input" name="pwd" type="password" placeholder="********">
+    </div>
+  </div>
+			<button type="submit" class="button is-primary">Sign in</button>
+			<br>
+			<br>
+			<!-- 
 			<label style="color: #808080" for="lname">e-mail:</label><br>
 			<input type="email" id="email" name="email" value=""></input><br> 
 			<label style="color: #808080" for="lname">Password:</label><br> 
 			<input type="password" id="pwd" name="pwd" value="" ></input><br> <br> 
 			<input type="submit" value="Login" class="button-success pure-button" style="margin: 20px 0 20px 0"></input>
-			<br> 
-			<a style="margin:20px" href="<%= request.getContextPath() %>/User/UserRegistration.jsp">Create a account</a>
+			<br>  -->
+			<a  href="<%= request.getContextPath() %>/User/UserRegistration.jsp">Create a account</a>
 		</form>
 	</div>
 </body>

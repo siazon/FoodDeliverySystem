@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@include file="../common/init.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html style="overflow-y: hidden;">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 <style>
 * {
 	margin: 0;
@@ -23,50 +23,67 @@ body {
 }
 
 header {
-	height: 80px;
+	height: 90px;
 	border-style: solid;
 	border-width: 0px 0px 1px 0px;
 	border-color: #FB6100;
-}
-
-header a {
-	width: 100px;
-	background-color: white;
-	float: right;
-	margin-top: 30px;
 }
 
 section {
 	flex: 1;
 	height: auto;
 }
-
-footer {
-	height: 50px;
-	/*background-color: #FB6100;*/
-}
 </style>
 </head>
 <body>
 	<header id="tabTit">
-		<img src="Images/logo.png" onclick="displayHome()" width="160" height="80"> 
+		<nav class="navbar" role="navigation" aria-label="main navigation" style="height: 80px;">
+			<div class="navbar-brand">
+				<img src="Images/logo.png" style="height: 80px;width:160px;"> 
+				<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample"> <span
+					aria-hidden="true"
+				></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span>
+				</a>
+			</div>
+			<div id="navbarBasicExample" class="navbar-menu">
+				<div class="navbar-start"></div>
+				<div class="navbar-end">
+					<div class="navbar-item">
+						<div class="buttons">
+							<a onclick="displayHome()" class="button is-warning"> <strong>Home</strong>
+							</a> <a onclick="displaySignUp()" class="button is-primary"> <strong>Sign up</strong>
+							</a> <a onclick="displayLogin()" class="button is-light">Login</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- 	<img src="Images/logo.png" onclick="displayHome()" width="160" height="80"> 
 		<a onclick="displayLogin()" style="cursor:pointer;">Login</a>
-		 <a  onclick="displayHome()" style="cursor:pointer;">Home</a>
+		 <a  onclick="displayHome()" style="cursor:pointer;">Home</a> -->
 	</header>
 	<section>
-	  <iframe id="centerFrame" name="centerFrame" class="page-iframe" width="100%" height="100%" src="Home.jsp"
-            frameborder="0"></iframe>
+		<iframe id="centerFrame" name="centerFrame" class="page-iframe" width="100%" height="100%" src="Home.jsp" frameborder="0"></iframe>
 	</section>
-	<footer><%@ include file="Footer.jsp"%></footer>
 </body>
 <script>
+
+
+
     var btns = document.getElementById('tabTit').getElementsByTagName('a');
     var tabCon = document.getElementById('centerFrame');
-    function displayLogin(){
-    	 tabCon.src = 'User/Login.jsp';
-    }
+   
     function displayHome(){
-   	 tabCon.src = '<%=request.getContextPath()%>/EmployeeManager';
+   	 tabCon.src = 'Home.jsp';
    }
+    function displayLogin(){
+  	 tabCon.src = 'User/Login.jsp';
+   } 
+    function displaySignUp(){
+	  	 tabCon.src =  'User/UserRegistration.jsp';
+	}
+   function displayAdmin(){
+  	 tabCon.src = '<%=request.getContextPath()%>/EmployeeManager';
+	}
 </script>
 </html>

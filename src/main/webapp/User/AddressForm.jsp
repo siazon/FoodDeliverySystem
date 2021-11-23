@@ -6,39 +6,22 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 <style>
-table, td, th {
-  border: 1px solid black;
-}
 
-table {
-  width: auto;
-  border-collapse: collapse;
-}
-.pure-button {
-	font-family: inherit;
-	font-size: 100%;
-	padding: .5em 1em;
-	color: #444;
-	color: rgba(0, 0, 0, .8);
-	border: 1px solid #999;
-	border: none transparent;
-	background-color: #e6e6e6;
-	text-decoration: none;
-	border-radius: 2px;
-	margin: 20px;
-	cursor:pointer;
-}
-
-.button-success {
-	background: rgb(28, 184, 65); /* this is a green */
-}
+ .hdiv {
+            background-color: #f3f3f3;
+        }  h1 {
+            text-align: left;
+            margin: 0 0 10px 10px;
+            padding: 10px;
+        }
 </style>
 </head>
 <body>
 
 	<center>
-		<h1>Address Management</h1>
+		<h1 class="hdiv">Address Management</h1>
        
 	</center>
     <div align="center">
@@ -48,6 +31,90 @@ table {
         <c:if test="${address == null}">
 			<form action="<%= request.getContextPath() %>/AddressManager?action=new" method="post">
         </c:if>
+        
+         <c:if test="${address != null}">
+        			<input type="hidden" name="address_id" value="<c:out value='${address.address_id}' />" />
+        		</c:if>   
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Email:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field is-narrow">
+                        <div class="control">
+                            <input class="input" name="user_email" type="text"
+                                   value="<c:out value='<%=request.getParameter("user_email")%>' />"
+                                   placeholder="e.g. Partnership opportunity">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+             
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">County:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field is-narrow">
+                        <div class="control">
+                            <input class="input" name="county" type="text"
+                                   value="<c:out value='${address.county}' />"
+                                   placeholder="e.g. Partnership opportunity">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        		
+        		 <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Street:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field is-narrow">
+                        <div class="control">
+                            <input class="input" name="street" type="text"
+                                   value="<c:out value='${address.street}' />"
+                                   placeholder="e.g. Partnership opportunity">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        		
+        		 <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Address:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field is-narrow">
+                        <div class="control">
+                            <input class="input" name="address" type="text"
+                                   value="<c:out value='${address.address}' />"
+                                   placeholder="e.g. Partnership opportunity">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+             <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Phone:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field is-narrow">
+                        <div class="control">
+                            <input class="input" name="phone" type="text"
+                                   value="<c:out value='${address.phone}' />"
+                                   placeholder="e.g. Partnership opportunity">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        <!-- 
         <table border="1" cellpadding="5">
             <caption>
             	<h2>
@@ -59,9 +126,7 @@ table {
             		</c:if>
             	</h2>
             </caption>
-        		<c:if test="${address != null}">
-        			<input type="hidden" name="address_id" value="<c:out value='${address.address_id}' />" />
-        		</c:if>   
+           
         		 <tr>
                 <th>User Email: </th>
                 <td>
@@ -104,9 +169,9 @@ table {
                 </td>
             </tr>
             
-        </table>
-            		<input type="submit" value="Save" class="button-success pure-button"/>
-            		<input onclick="cancelEdit()" type="button" value="Cancel" class="button-success pure-button" />
+        </table> -->
+            		<input class="button  is-link" type="submit" value="Save" class="button-success pure-button"/>
+            		<input class="button  is-link is-light" onclick="cancelEdit()" type="button" value="Cancel" class="button-success pure-button" />
         </form>
     </div>
 </body><script>
