@@ -80,7 +80,8 @@ section {
   	 tabCon.src = 'User/Login.jsp';
    } 
     function displaySignUp(){
-	  	 tabCon.src =  'User/UserRegistration.jsp';
+	  	// tabCon.src =  'User/UserRegistration.jsp';
+    	tabCon.src = '<%=request.getContextPath()%>/AddressManager';
 	}
    function displayAdmin(){
   	 tabCon.src = '<%=request.getContextPath()%>/EmployeeManager';
