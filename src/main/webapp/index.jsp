@@ -74,7 +74,7 @@ section {
     var tabCon = document.getElementById('centerFrame');
    
     function displayHome(){
-   	 tabCon.src = 'Home.jsp';
+   	 tabCon.src = '<%=request.getContextPath()%>/MenuServlet';
    }
     function displayLogin(){
   	 tabCon.src = 'User/Login.jsp';
