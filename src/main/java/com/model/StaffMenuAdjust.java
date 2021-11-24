@@ -13,9 +13,10 @@ public class StaffMenuAdjust {
 		
 		
 		
-		public StaffMenuAdjust(String menuCategory, String name, String itemDescription, String allergies,
+		public StaffMenuAdjust(Integer id,String menuCategory, String name, String itemDescription, String allergies,
 				double price) {
 			super();
+			this.prodId=id;
 			this.menuCategory = menuCategory;
 			this.itemName = name;
 			this.itemDescription = itemDescription;

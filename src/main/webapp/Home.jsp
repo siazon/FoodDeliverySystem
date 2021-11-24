@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="com.model.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,6 +37,13 @@ display: float;}
 </style>
 </head>
 <body>
+<%
+String name ="";
+	User user = (User) request.getAttribute("user");
+if(user!=null) {
+	 name = user.getUser_name();
+	System.out.print(name);}
+	%>
 <div>
 <div class="tabs is-medium">
   <ul>
@@ -47,7 +55,8 @@ display: float;}
   </ul>
 </div>
 </div>
-
+  <input class="input" style="display:none;" name="user_email" type="text" id="user_name"
+                                   value="<c:out value='<%=name%>' />">
 <div class="columns">
   <div class="column">
    <div class="card">
@@ -90,7 +99,7 @@ display: float;}
     <div class="media">
      
       <div class="media-content">
-        <p class="title is-4">Fish meal</p>
+        <p class="title is-4">meal</p>
         <p class="subtitle is-6">$8.99</p>
       </div>
       
@@ -173,14 +182,14 @@ display: float;}
     <div class="card">
   <div class="card-image">
     <figure class="image is-2by2">
-      <img src="<%=request.getContextPath()%>/Images/6.png" alt="Placeholder image">
+      <img src="<%=request.getContextPath()%>/Images/5.jpg" alt="Placeholder image">
     </figure>
   </div>
   <div class="card-content">
     <div class="media">
      
       <div class="media-content">
-        <p class="title is-4">Fish meal</p>
+        <p class="title is-4">Meal meal</p>
         <p class="subtitle is-6">$8.99</p>
       </div>
       
@@ -198,7 +207,22 @@ display: float;}
     </div>
   </div>
 </div>
+  </div>
+  <div class="column">
+    <div class="card">
+ 
+</div>
 </div>
 
 </body>
+<script>
+window.onload = function() {
+	var name = document.getElementById('user_name').value;
+	 console.log(name);
+	var autoMessage = {
+		"name" : name
+	};
+
+	window.parent.postMessage(autoMessage, '*');
+</script>
 </html>

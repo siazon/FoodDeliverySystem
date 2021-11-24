@@ -51,8 +51,13 @@ section {
 					<div class="navbar-item">
 						<div class="buttons">
 							<a onclick="displayHome()" class="button is-warning"> <strong>Home</strong>
-							</a> <a onclick="displaySignUp()" class="button is-primary"> <strong>Sign up</strong>
-							</a> <a onclick="displayLogin()" class="button is-light">Login</a>
+							</a> 
+							<div id="btnNotlogin" >
+							<a onclick="displaySignUp()" class="button is-primary"> <strong>Sign up</strong>
+							</a> 
+							<a onclick="displayLogin()" class="button is-light">Login</a>
+							</div>
+							<a id="btnloginOut" onclick="displayLogOut()" class="button is-light">LogOut</a>
 						</div>
 					</div>
 				</div>
@@ -67,21 +72,38 @@ section {
 	</section>
 </body>
 <script>
-
-
-
+init();
+function init(){
+	document.getElementById('btnloginOut').style.display = "none";
+window.addEventListener('message',function(e){
+    let data = e;
+    //console.log('Msg: ',data);
+    if(data.data.name!=undefined)
+    { console.log('Msg: ',data.data.name);
+    document.getElementById('btnloginOut').style.display = "block";
+    document.getElementById('btnloginOut').value = "Logout("+data.data.name+")";
+    document.getElementById('btnNotlogin').style.display = "none";
+    }
+    
+    },false);
+}
+function displayLogOut(){
+    document.getElementById('btnNotlogin').style.display = "block";
+    document.getElementById('btnloginOut').style.display = "none";
+    tabCon.src  = 'Home.jsp';
+}
     var btns = document.getElementById('tabTit').getElementsByTagName('a');
     var tabCon = document.getElementById('centerFrame');
    
     function displayHome(){
-   	 tabCon.src = '<%=request.getContextPath()%>/MenuServlet';
+   	 tabCon.src  = 'Home.jsp';
    }
     function displayLogin(){
   	 tabCon.src = 'User/Login.jsp';
    } 
     function displaySignUp(){
-	  	// tabCon.src =  'User/UserRegistration.jsp';
-    	tabCon.src = '<%=request.getContextPath()%>/AddressManager';
+	  	 tabCon.src =  'User/UserRegistration.jsp';
+    	// tabCon.src = '<%=request.getContextPath()%>/AddressManager';
 	}
    function displayAdmin(){
   	 tabCon.src = '<%=request.getContextPath()%>/EmployeeManager';

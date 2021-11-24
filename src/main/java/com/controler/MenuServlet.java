@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dal.StaffMenuDAL;
 import com.model.StaffMenuAdjust;
+import com.model.User;
 
 /**
  * Servlet implementation class MenuServlet
@@ -42,7 +43,35 @@ public class MenuServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getServletPath();
+
+		String action = request.getParameter("action");
+		if ("new".equals(action)) 
+		{
+			
+			
+		}
+		else if ("edit".equals(action)) {
+			Integer id =Integer.parseInt(request.getParameter("id"));
+			List<StaffMenuAdjust>listMenu = staffMenuDAL.selectAllMenu();
+			for(StaffMenuAdjust item:listMenu)
+			{
+				if(item.getProdId()==id)
+				{
+					request.setAttribute("menu", item);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("MenuAdjust.jsp");
+					dispatcher.forward(request, response);
+					
+				}
+			}
+			
+		}
+		else {
+			listMenu(request, response);
+		}
+	
+		return;
+		
+	/*
 		switch(action) {
 		case "new":
 			showNewForm(request, response);
@@ -85,7 +114,7 @@ public class MenuServlet extends HttpServlet {
 
 			break;
 
-		}
+		}*/
 	}//end of do get method
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -100,7 +129,7 @@ public class MenuServlet extends HttpServlet {
 		String description = request.getParameter("description");
 		String allergies = request.getParameter("allergies");
 		double price = Double.parseDouble(request.getParameter("price"));
-		StaffMenuAdjust menuItem = new StaffMenuAdjust(menuCategory, name, description, allergies, price);
+		StaffMenuAdjust menuItem = new StaffMenuAdjust(0,menuCategory, name, description, allergies, price);
 
 		staffMenuDAL.insertMenu(menuItem);
 		response.sendRedirect("list");
@@ -139,9 +168,10 @@ public class MenuServlet extends HttpServlet {
 		String description = request.getParameter("description");
 		String allergies = request.getParameter("allergies");
 		double price = Double.parseDouble(request.getParameter("price"));
+		int id = Integer.parseInt(request.getParameter("price"));
 
 
-		StaffMenuAdjust menuItem = new StaffMenuAdjust(menuCategory, name, description, allergies, price);
+		StaffMenuAdjust menuItem = new StaffMenuAdjust(id,menuCategory, name, description, allergies, price);
 
 		staffMenuDAL.updateMenu(menuItem);
 		response.sendRedirect("list");

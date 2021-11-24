@@ -28,31 +28,12 @@ public class StaffMenuDAL {
 
 	}
 
-	public static Connection getConnection() {
-		Connection connection = null;
-		try
-		{
-			// Load the JConnector Driver
-			Class.forName("com.mysql.jdbc.Driver");
-			// Specify the DB Name
-			String url="jdbc:mysql://localhost:3306/onlinetus";
-			// Connect to DB using DB URL, Username and password
-			Connection con = DriverManager.getConnection(url, "root", "$oftwareEngin33ring");
-			//Create a generic statement which is passed to the TestInternalFrame1
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM menu");
-		}
-		catch(Exception e)
-		{
-			System.out.println("Error: Failed to connect to database\n"+e.getMessage());
-		}
-		return connection;
-	}
+
 
 	//	insert user
 	public void insertMenu(StaffMenuAdjust menu) throws SQLException {
 		System.out.println(INSERT_MENU_SQL);
-		try(Connection connection = getConnection();
+		try(Connection connection = MysqlUtil.getConnection();
 
 				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_MENU_SQL)) {
 
@@ -73,7 +54,7 @@ public class StaffMenuDAL {
 	public StaffMenuAdjust selectMenu(int id){
 		StaffMenuAdjust menu = null;
 		//		Step 1: Establishing a Connection
-		try(Connection connection = getConnection();
+		try(Connection connection =MysqlUtil. getConnection();
 				//				Step 2: Create a statement using connection object
 				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_NAME_BY_CATEGORY);) {
 			preparedStatement.setInt(1,  id);
@@ -83,13 +64,14 @@ public class StaffMenuDAL {
 
 			//				Process the ResultSet object
 			while(rs.next()) {
-				String itemName = rs.getString("Item Name: " );
+				String itemName = rs.getString("name" );
 
-				String itemDescription = rs.getString("Item Description: ");
-				String menuCategory = rs.getString("Menu Category: ");
-				String allergies = rs.getString("Allergies: ");
-				double price = rs.getDouble("Enter Price: ");
-				menu = new StaffMenuAdjust(itemName, itemDescription, menuCategory, allergies, price);
+				String itemDescription = rs.getString("description");
+				String menuCategory = rs.getString("allergies");
+				String allergies = rs.getString("allergies");
+				double price = rs.getDouble("price");
+				Integer food_id = rs.getInt("food_id");
+				menu = new StaffMenuAdjust(food_id,itemName, itemDescription, menuCategory, allergies, price);
 			}
 		}catch (SQLException e) {
 			printSQLException(e);
@@ -102,7 +84,7 @@ public class StaffMenuDAL {
 		List<StaffMenuAdjust> menu = new ArrayList<>();
 
 		//		Step 1: Establish the connection
-		try(Connection connection = getConnection();
+		try(Connection connection = MysqlUtil.getConnection();
 				//				Step 2: Create a statement using connection object
 				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_MENU);) {
 			System.out.println(preparedStatement);
@@ -112,12 +94,14 @@ public class StaffMenuDAL {
 			//					Step4:Process the ResultSet object
 			while(rs.next()) {
 
-				String itemName = rs.getString("Item Name: " );
-				String menuCategory = rs.getString("Menu Category: ");
-				String itemDescription = rs.getString("Item Description: ");
-				String allergies = rs.getString("Allergies: ");
-				double price = rs.getDouble("Enter Price: ");
-				menu.add(new StaffMenuAdjust(itemName,itemDescription, menuCategory, allergies, price));
+				String itemName = rs.getString("name" );
+
+				String itemDescription = rs.getString("description");
+				String menuCategory = rs.getString("menu_category");
+				String allergies = rs.getString("allergies");
+				double price = rs.getDouble("price");
+				Integer id = rs.getInt("food_id");
+				menu.add(new StaffMenuAdjust(id,menuCategory,itemName,itemDescription,  allergies, price));
 			}
 		}catch (SQLException e) {
 			printSQLException(e);
@@ -129,7 +113,7 @@ public class StaffMenuDAL {
 	//	update menu
 	public boolean updateMenu(StaffMenuAdjust menu) throws SQLException {
 		boolean rowUpdated;
-		try (Connection connection = getConnection();
+		try (Connection connection = MysqlUtil.getConnection();
 				PreparedStatement statement = connection.prepareStatement(UPDATE_MENU_SQL);) {
 			System.out.println("update Menu Item: "+statement);
 			statement.setString(0, menu.getMenuCategory());
@@ -143,18 +127,27 @@ public class StaffMenuDAL {
 		return rowUpdated;
 	}
 
-	//	delete menu
-
+	//**
+	//delete menu
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean deleteMenu(int id) throws SQLException {
 		boolean rowDeleted;
-		try(Connection connection = getConnection();
+		try(Connection connection = MysqlUtil.getConnection();
 				PreparedStatement statement = connection.prepareStatement(DELETE_FOOD_SQL);) {
 			statement.setInt(1, id);
 			rowDeleted = statement.executeUpdate() > 0;
 		}
 		return rowDeleted;
 	}
-
+	/**
+	 * 
+	 * @param ex
+	 */
 	private void printSQLException(SQLException ex) {
 		for(Throwable e : ex) {
 			if (e instanceof SQLException) {
