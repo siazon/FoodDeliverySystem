@@ -5,7 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.model.User;
-
+/**
+ * 
+ * 
+ * @author Xiasong Chen
+ * @date 2021-11-30 23:56:18
+ * @version v1.0
+ */
 public class UserDAL {
 
 	private final String INSERT_USERS_SQL = "INSERT INTO tb_user" + "  ( user_email,user_password,user_role) VALUES "
@@ -16,7 +22,12 @@ public class UserDAL {
 	private final String SELECT_ALL_USERS = "select * from tb_user";
 	private final String DELETE_USERS_SQL = "delete from tb_user where user_email = ?;";
 	private static final String UPDATE_USERS_SQL = "update tb_user set user_name = ?,user_phone = ?,user_status = ?, user_role =? where user_email = ?;";
-
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 * @throws SQLException
+	 */
 	public String insertUser(User user) throws SQLException {
 		System.out.println(INSERT_USERS_SQL);
 		User user2 = selectUser(user.getUser_email());
@@ -38,7 +49,11 @@ public class UserDAL {
 		}
 		return "unknown error ";
 	}
-
+	/**
+	 * 
+	 * @param eamil
+	 * @return
+	 */
 	public User selectUser(String eamil) {
 		User user = null;
 		// Step 1: Establishing a Connection
@@ -65,7 +80,10 @@ public class UserDAL {
 		}
 		return user;
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public List<User> selectAllUsers() {
 
 		// using try-with-resources to avoid closing resources (boiler plate code)
@@ -92,7 +110,10 @@ public class UserDAL {
 		}
 		return users;
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<User> selectAllEmployee() {
 
 		// using try-with-resources to avoid closing resources (boiler plate code)
@@ -121,7 +142,12 @@ public class UserDAL {
 		}
 		return users;
 	}
-
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean deleteUser(String email) throws SQLException {
 		boolean rowDeleted;
 		try (Connection connection = MysqlUtil.getConnection();
@@ -131,7 +157,13 @@ public class UserDAL {
 		}
 		return rowDeleted;
 	}
-//can not update password, create a separate method to change password
+
+	/**
+	 * can not update password, create a separate method to change password
+	 * @param user
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean updateUser(User user) throws SQLException {
 		boolean rowUpdated;
 		try (Connection connection = MysqlUtil.getConnection();
@@ -146,7 +178,10 @@ public class UserDAL {
 		}
 		return rowUpdated;
 	}
-
+	/**
+	 * 
+	 * @param ex
+	 */
 	private void printSQLException(SQLException ex) {
 		for (Throwable e : ex) {
 			if (e instanceof SQLException) {

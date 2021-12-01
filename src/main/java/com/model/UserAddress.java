@@ -1,5 +1,11 @@
 package com.model;
-
+/**
+ * 
+ * 
+ * @author Xiasong Chen
+ * @date 2021-11-30 23:56:18
+ * @version v1.0
+ */
 public class UserAddress {
 	
 	private int address_id;

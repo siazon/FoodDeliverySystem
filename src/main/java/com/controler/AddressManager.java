@@ -15,7 +15,11 @@ import com.dal.AddressDAL;
 import com.model.*;
 
 /**
- * Servlet implementation class AddressManager
+ * 
+ * 
+ * @author Xiasong Chen
+ * @date 2021-11-30 23:56:18
+ * @version v1.0
  */
 @WebServlet("/AddressManager")
 public class AddressManager extends HttpServlet {

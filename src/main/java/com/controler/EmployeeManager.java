@@ -15,7 +15,11 @@ import com.dal.UserDAL;
 import com.model.*;
 
 /**
- * Servlet implementation class EmployeeManager
+ * 
+ * 
+ * @author Xiasong Chen
+ * @date 2021-11-30 23:56:18
+ * @version v1.0
  */
 @WebServlet("/EmployeeManager")
 public class EmployeeManager extends HttpServlet {

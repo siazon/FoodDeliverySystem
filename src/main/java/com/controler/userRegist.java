@@ -15,7 +15,11 @@ import com.dal.*;
 import com.model.User;
 
 /**
- * Servlet implementation class userRegist
+ * 
+ * 
+ * @author Xiasong Chen
+ * @date 2021-11-30 23:56:18
+ * @version v1.0
  */
 @WebServlet("/userRegist")
 public class userRegist extends HttpServlet {

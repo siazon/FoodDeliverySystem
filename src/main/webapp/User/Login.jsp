@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div>
-		<form class="box" action="<%=request.getContextPath()%>/userRegist?action=login" method="post" style="width: 300px; margin: 100px auto">
+		<form class="box" action="<%=request.getContextPath()%>/userLogin" method="post" style="width: 300px; margin: 100px auto">
 			<img src="<%=request.getContextPath()%>/Images/logo.png" width="280" height="125">
 			<div class="field">
 				<label class="label">Email</label>

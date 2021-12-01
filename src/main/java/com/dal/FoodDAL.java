@@ -8,7 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import com.model.*;
 
-
+/**
+ * 
+ * 
+ * @author Xiasong Chen
+ * @date 2021-11-30 23:56:18
+ * @version v1.0
+ */
 public class FoodDAL {
 
 
@@ -25,7 +31,11 @@ public class FoodDAL {
 	}
 
 	
-
+/**
+ * 
+ * @param food
+ * @throws SQLException
+ */
 	public void insertFood(Food food) throws SQLException {
 		System.out.println(INSERT_FOOD_SQL);
 		// try-with-resource statement will auto close the connection.
@@ -42,7 +52,11 @@ public class FoodDAL {
 			printSQLException(e);
 		}
 	}
-
+	/**
+	 * 
+	 * @param food_id
+	 * @return
+	 */
 	public Food selectFood(int food_id) {
 		Food _food = null;
 		// Step 1: Establishing a Connection
@@ -69,6 +83,11 @@ public class FoodDAL {
 		}
 		return _food;
 	}
+	/**
+	 * 
+	 * @param groupId
+	 * @return
+	 */
 	public List<Food> selectFoodByGroupId(int groupId) {
 		List<Food> foods = new ArrayList<>();
 		// Step 1: Establishing a Connection
@@ -95,6 +114,10 @@ public class FoodDAL {
 		}
 		return foods;
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Food> selectAllFoods() {
 
 		// using try-with-resources to avoid closing resources (boiler plate code)
@@ -123,7 +146,12 @@ public class FoodDAL {
 		}
 		return foods;
 	}
-
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean deleteFood(int id) throws SQLException {
 		boolean rowDeleted;
 		try (Connection connection = MysqlUtil.getConnection();
@@ -133,7 +161,12 @@ public class FoodDAL {
 		}
 		return rowDeleted;
 	}
-
+	/**
+	 * 
+	 * @param food
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean updateFood(Food food) throws SQLException {
 		boolean rowUpdated;
 		try (Connection connection = MysqlUtil.getConnection();
@@ -149,7 +182,10 @@ public class FoodDAL {
 		}
 		return rowUpdated;
 	}
-
+	/**
+	 * 
+	 * @param ex
+	 */
 	private void printSQLException(SQLException ex) {
 		for (Throwable e : ex) {
 			if (e instanceof SQLException) {

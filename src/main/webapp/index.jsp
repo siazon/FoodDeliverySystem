@@ -77,8 +77,8 @@ function init(){
 	document.getElementById('btnloginOut').style.display = "none";
 window.addEventListener('message',function(e){
     let data = e;
-    //console.log('Msg: ',data);
-    if(data.data.name!=undefined)
+    //console.log('Msg: ',data.data);
+    if(data.data.name!=undefined&&data.data.name.length>0)
     { console.log('Msg: ',data.data.name);
     document.getElementById('btnloginOut').style.display = "block";
     document.getElementById('btnloginOut').value = "Logout("+data.data.name+")";

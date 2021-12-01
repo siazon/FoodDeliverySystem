@@ -6,7 +6,13 @@ import java.util.List;
 import com.model.StaffMenuAdjust;
 import com.model.User;
 
-
+/**
+ * 
+ * 
+ * @author Kate Goode
+ * @date 2021-11-30 23:56:18
+ * @version v1.0
+ */
 public class StaffMenuDAL {
 
 	private String jdbcURL = "jdbc:mysql://localhost:3306/onlinetus?useSSL=false";
@@ -29,7 +35,11 @@ public class StaffMenuDAL {
 	}
 
 
-
+	/**
+	 * 
+	 * @param menu
+	 * @throws SQLException
+	 */
 	//	insert user
 	public void insertMenu(StaffMenuAdjust menu) throws SQLException {
 		System.out.println(INSERT_MENU_SQL);
@@ -50,7 +60,11 @@ public class StaffMenuDAL {
 	}
 
 	//	select menu by id
-
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public StaffMenuAdjust selectMenu(int id){
 		StaffMenuAdjust menu = null;
 		//		Step 1: Establishing a Connection
@@ -79,7 +93,10 @@ public class StaffMenuDAL {
 		return menu;
 	}
 
-	//	select all menu
+	/**
+	 * 
+	 * @return
+	 */
 	public List<StaffMenuAdjust> selectAllMenu() {
 		List<StaffMenuAdjust> menu = new ArrayList<>();
 
@@ -110,7 +127,12 @@ public class StaffMenuDAL {
 	}
 
 
-	//	update menu
+	/**
+	 * 
+	 * @param menu
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean updateMenu(StaffMenuAdjust menu) throws SQLException {
 		boolean rowUpdated;
 		try (Connection connection = MysqlUtil.getConnection();

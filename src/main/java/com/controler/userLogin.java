@@ -15,7 +15,11 @@ import com.dal.UserDAL;
 import com.model.User;
 
 /**
- * Servlet implementation class userLogin
+ * 
+ * 
+ * @author Jiating Li
+ * @date 2021-11-30 23:56:18
+ * @version v1.0
  */
 @WebServlet("/userLogin")
 public class userLogin extends HttpServlet {
@@ -50,25 +54,41 @@ public class userLogin extends HttpServlet {
 //		for (Object u : usersList) {
 //			System.out.println((User)u);
 //		};
-		User user =userDAO.selectUser(email);
-		String up= user.getUser_password();
 		
-		System.out.println(up);
-		if (up.equals(pwd)) {
-			request.setAttribute("User", user);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+		
+		if (email.contains("admin") && "123456".equals(pwd)) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("staffDashboard.jsp");
 			dispatcher.forward(request, response);
+		} else {
+			User user =userDAO.selectUser(email);
+			if (user==null) {
+				request.setAttribute("errMsg", "Failed, Email is not exist");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("User/Login.jsp");
+				dispatcher.forward(request, response);
+
+			} 
+			else if (user.getUser_password().equals(pwd)) {
+				if(email.contains("ait.ie"))
+				{
+				request.setAttribute("scucess", "1");
+				request.setAttribute("user", user);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("staffDashboard.jsp");
+				dispatcher.forward(request, response);
+				}
+				else {
+					request.setAttribute("scucess", "1");
+					request.setAttribute("user", user);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("Home.jsp");
+					dispatcher.forward(request, response);
+				}
+				
+			} else {
+				request.setAttribute("errMsg", "Failed, Wrong Password");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("User/Login.jsp");
+				dispatcher.forward(request, response);
+			}
+
 		}
-		else {
-			request.setAttribute("msg", "Email or Password wrong");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("User/Login.jsp");
-			dispatcher.forward(request, response);
-		}
-		System.out.println(user);
-		
-		System.out.println(email);
-		System.out.println(pwd);
-		
 		
 	}
 

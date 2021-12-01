@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.model.*"%>
 <!DOCTYPE html>
 <html>
@@ -45,6 +46,8 @@ if(user!=null) {
 	System.out.print(name);}
 	%>
 <div>
+  <input class="input" style="display:none;" name="user_email" type="text" id="user_name"
+                                   value="<c:out value='<%=name%>' />">
 <div class="tabs is-medium">
   <ul>
     <li class="is-active"><a>Meal</a></li>
@@ -55,8 +58,7 @@ if(user!=null) {
   </ul>
 </div>
 </div>
-  <input class="input" style="display:none;" name="user_email" type="text" id="user_name"
-                                   value="<c:out value='<%=name%>' />">
+
 <div class="columns">
   <div class="column">
    <div class="card">
@@ -216,13 +218,14 @@ if(user!=null) {
 
 </body>
 <script>
-window.onload = function() {
-	var name = document.getElementById('user_name').value;
-	 console.log(name);
-	var autoMessage = {
-		"name" : name
-	};
+	window.onload = function() {
+		var name = document.getElementById('user_name').value;
+		 console.log('home:',name);
+		var autoMessage = {
+			"name" : name
+		};
 
-	window.parent.postMessage(autoMessage, '*');
+		window.parent.postMessage(autoMessage, '*');
+	}
 </script>
 </html>

@@ -17,7 +17,11 @@ import com.model.StaffMenuAdjust;
 import com.model.User;
 
 /**
- * Servlet implementation class MenuServlet
+ * 
+ * 
+ * @author Xiasong Chen
+ * @date 2021-11-30 23:56:18
+ * @version v1.0
  */
 @WebServlet("/MenuServlet")
 public class MenuServlet extends HttpServlet {
