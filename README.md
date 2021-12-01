@@ -61,7 +61,7 @@ CREATE TABLE menu (
     INSERT INTO menu VALUES ( null, 3, 'Cheescake', 'Smashed Honeycomb', '1, 3, 5, 4', 5.00, 1);
     INSERT INTO menu VALUES ( null, 3, 'Brownie', 'Chocolate', '1, 3, 5, 4', 5.00, 1);
     INSERT INTO menu VALUES ( null, 4, 'Sweet Potato Fries', 'Thinly sliced homemade sweet potato fries with sea slat', '1, 3, 5, 4', 5.00, 1);
-	INSERT INTO menu VALUES ( null, 4, 'Side Salad', 'Fresh garden salad', '1, 3, 5', 3.00, 1);
+INSERT INTO menu VALUES ( null, 4, 'Side Salad', 'Fresh garden salad', '1, 3, 5', 3.00, 1);
 	INSERT INTO menu VALUES ( null, 5, 'coke', 'can', '1, 3, 5, 4', 1.20,1);
      
     
