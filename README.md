@@ -1,3 +1,4 @@
+ ```
  -- mysql
  DROP TABLE IF EXISTS `tb_user`;
 CREATE TABLE `tb_user` (
@@ -65,6 +66,6 @@ INSERT INTO menu VALUES ( null, 4, 'Side Salad', 'Fresh garden salad', '1, 3, 5'
 	INSERT INTO menu VALUES ( null, 5, 'coke', 'can', '1, 3, 5, 4', 1.20,1);
      
     
-
+```
 
 
